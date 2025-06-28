@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"movies/handlers"
 	"movies/logger"
 	"net/http"
 )
@@ -20,7 +21,8 @@ func main() {
 
 	logInstance := initializeLogger()
 
-	http.Handle("/", http.FileServer(http.Dir("public")))
+	movieHandler := handlers.MovieHandler{}
+	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
 
 	const addr = "localhost:8082"
 
