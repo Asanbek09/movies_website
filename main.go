@@ -23,6 +23,7 @@ func main() {
 
 	movieHandler := handlers.MovieHandler{}
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
+	http.Handle("/", http.FileServer(http.Dir("public")))
 
 	const addr = "localhost:8082"
 
