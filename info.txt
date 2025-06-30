@@ -1,3 +1,6 @@
 Установка :
 
 go install github.com/air-verse/air@latest
+
+Чтобы создать таблицы и добавить данные, переходим в папку import и после запускаем install.go:
+go run install.go
