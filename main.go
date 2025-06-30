@@ -3,12 +3,14 @@ package main
 import (
 	"database/sql"
 	"log"
+	"movies/data"
 	"movies/handlers"
 	"movies/logger"
 	"net/http"
 	"os"
 
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
 func initializeLogger() *logger.Logger {
@@ -40,6 +42,12 @@ func main() {
 		log.Fatalf("Failed to connect to the DB: %v", err)
 	}
 	defer db.Close()
+
+	// initialiaze
+	movieRepo, err := data.NewMovieRepository(db, logInstance)
+	if err != nil {
+		log.Fatalf("Fail to initialize repository %v", err)
+	}
 
 	// movie handler initializer
 	movieHandler := handlers.MovieHandler{}
