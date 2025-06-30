@@ -16,7 +16,7 @@ import (
 func initializeLogger() *logger.Logger {
 	logInstance, err := logger.NewLogger("movies.log")
 	if err != nil {
-		log.Fatalf("Failed to initialize logger $v", err)
+		log.Fatalf("Failed to initialize logger %v", err)
 	}
 	defer logInstance.Close()
 
@@ -54,7 +54,7 @@ func main() {
 	movieHandler.Logger = logInstance
 
 	// movie handler initializer
-	
+
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
 	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
 
