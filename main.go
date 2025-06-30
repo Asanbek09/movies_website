@@ -43,14 +43,18 @@ func main() {
 	}
 	defer db.Close()
 
-	// initialiaze
+	// initialiaze data repository for movies
 	movieRepo, err := data.NewMovieRepository(db, logInstance)
 	if err != nil {
 		log.Fatalf("Fail to initialize repository %v", err)
 	}
 
-	// movie handler initializer
 	movieHandler := handlers.MovieHandler{}
+	movieHandler.Storage = movieRepo
+	movieHandler.Logger = logInstance
+
+	// movie handler initializer
+	
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
 	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
 
