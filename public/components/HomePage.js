@@ -1,4 +1,5 @@
 import { API } from "../services/API.js";
+import { MovieItemComponent } from "./MovieItem.js";
 
 export class HomePage extends HTMLElement { // <home-page>
     
@@ -7,13 +8,13 @@ export class HomePage extends HTMLElement { // <home-page>
         renderMoviesInList(topMovies, document.querySelector("#top-10 ul"));
         
         const randomMovies = await API.getRandomMovies()
-        renderMoviesInList(topMovies, document.querySelector("#random ul"));
+        renderMoviesInList(randomMovies, document.querySelector("#random ul"));
 
         function renderMoviesInList(movies, ul) {
             ul.innerHTML = "";
             movies.forEach(movie => {
                 const li = document.createElement("li");
-                li.textContent = movie.title;
+                li.appendChild(new MovieItemComponent(movie));
                 ul.appendChild(li);
             });
         }
