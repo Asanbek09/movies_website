@@ -26,9 +26,7 @@
             </form>
         </div>
     </header>
-    <main>
-        <animated-loading data-elements="5" data-width="300px" data-height="200px"></animated-loading>
-    </main>
+    <main></main>
 
     <template id="template-home">
         <section class="vertical-scroll" id="top-10">
@@ -40,7 +38,25 @@
             <ul></ul>
         </section>
     </template>
-
+    <template id="template-movie-details">
+        <article id="movie">
+            <h2><animated-loading elements="2"></animated-loading></h2>
+            <h3></h3>
+            <header>
+                <img src="" alt="Poster">
+                <youtube-embed id="trailer" data-url=""></youtube-embed>
+                <section id="actions">
+                    <dl id="metadata">
+                    </dl>
+                    <button>Add to Favorites</button>
+                    <button>Add to Watchlist</button>    
+                </section>
+            </header>
+            <ul id="genres"></ul>
+            <p id="overview"></p>
+            <ul id="cast"></ul>
+        </article>
+    </template>
     <footer>
         <p>(C) ReelingIT - FrontendMasters.com</p>
     </footer>
