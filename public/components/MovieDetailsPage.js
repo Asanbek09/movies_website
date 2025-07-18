@@ -50,7 +50,7 @@ export class MovieDetailsPage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.id = 15;
+        this.id = this.params[0];
         this.render();
     }
 }
