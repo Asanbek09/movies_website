@@ -43,7 +43,24 @@ export const Router = {
             pageElement = document.createElement("h1")
             pageElement.textContent = "Page not found"
         }
-        document.querySelector("main").innerHTML ="";
-        document.querySelector("main").appendChild(pageElement);
+        // inserting the new page in the UI
+        const oldPage = document.querySelector("main").firstElementChild;
+        if (oldPage) oldPage.computedStyleMap.viewTransitionName = "old";
+        pageElement.style.viewTransitionName = "new";
+
+        function updatePage() {
+            document.querySelector("main").innerHTML ="";
+            document.querySelector("main").appendChild(pageElement);
+        }
+
+        if (!document.startViewTransition) {
+            // we don't do a transition
+            updatePage();
+        } else {
+            // we do a transition
+            document.startViewTransition( () => {
+                updatePage();
+            });
+        }
     }
 }

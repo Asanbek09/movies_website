@@ -5,15 +5,15 @@ import './components/YoutubeEmbed.js';
 import { MovieDetailsPage } from "./components/MovieDetailsPage.js";
 import { Router } from "./services/Router.js";
 
-window.addEventListener("DOMContentLoaded", event => {
+window.addEventListener("DOMContentLoaded", () => {
     app.Router.init();
 });
 
 window.app = {
+    API,
     Router,
     search: (event) => {
         event.preventDefault();
         const q = document.querySelector("input[type=search]").value;
     },
-    api: API
 }

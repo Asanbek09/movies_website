@@ -8,11 +8,11 @@ export const routes = [
         component: HomePage
     },
     {
-        path: /\movies\/(\d+)/,
-        component: MovieDetailsPage
-    },
-    {
         path: "/movies", // search results
         component: MoviePage
+    },
+    {
+        path: /\movies\/(\d+)/,
+        component: MovieDetailsPage
     }
 ]
