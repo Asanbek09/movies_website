@@ -2,7 +2,7 @@
 export class LoginPage extends HTMLElement {
     
     connectedCallback() {
-        const template = document.getElementById("template-register");
+        const template = document.getElementById("template-login");
         const content = template.content.cloneNode(true);
         this.appendChild(content);  
     }

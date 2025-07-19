@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 window.app = {
     Router,
-    showError: (message = "There was an error", goToHome=true) => {
+    showError: (message = "There was an error", goToHome=false) => {
         document.getElementById("alert-modal").showModal();
         document.querySelector("#alert-modal p").textContent = message;
         if (goToHome) app.Router.go("/");
@@ -60,8 +60,24 @@ window.app = {
             app.showError(errors.join(". "))
         }
     },
-    login: (event) => {
+    login: async (event) => {
         event.preventDefault();
+        let errors = [];
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+ 
+        if (email.length < 8) errors.push("Enter your complete email");
+        if (password.length < 6) errors.push("Enter a password with 6 characters");
+        if (errors.length==0) {
+            const response = await API.login(email, password);
+            if (response.success) {
+                app.Router.go("/account/")
+            } else {
+                app.showError(response.message, false);
+            }
+        } else {
+            app.showError(errors.join(". "), false);
+        }
     },
     api: API,
 }
