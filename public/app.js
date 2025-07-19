@@ -22,6 +22,7 @@ window.app = {
     search: (event) => {
         event.preventDefault();
         const q = document.querySelector("input[type=search]").value;
+        app.Router.go("/movies?q=" + q);
     },
     api: API,
 }
