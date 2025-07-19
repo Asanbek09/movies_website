@@ -6,6 +6,9 @@ export const API = {
     getRandomMovies: async () => {
         return await API.fetch("movies/random/");
     },
+    getGenres: async () => {
+        return await API.fetch("genres/");
+    },
     getMovieById: async (id) => {
         return await API.fetch(`movies/${id}`);
     },
