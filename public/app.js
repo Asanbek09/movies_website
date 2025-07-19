@@ -36,5 +36,32 @@ window.app = {
         const order = urlParams.get("order") ?? "";
         app.Router.go(`/movies?q=${q}&order=${order}&genre=${genre}`);
     },
+    register: async (event) => {
+        event.preventDefault();
+        const name = document.getElementById("register-name").value;
+        const password = document.getElementById("register-password").value;
+        const passwordConfirm = document.getElementById("register-password-confirm").value;
+        const email = document.getElementById("register-email").value;
+
+        const errors = [];
+        if (name.length < 4) errors.push("Enter your complete name");
+        if (password.length < 7) errors.push("Enter a password with at least 7 characters");
+        if (email.length < 4) errors.push("Enter your complete email");
+        if (passwordConfirm != password) errors.push("Password's don't match");
+
+        if (errors.length == 0) {
+            const response = await API.register(name, email, password)
+            if (response.success) {
+                app.Router.go("/account/")
+            } else {
+                app.showError(response.message);
+            }
+        } else {
+            app.showError(errors.join(". "))
+        }
+    },
+    login: (event) => {
+        event.preventDefault();
+    },
     api: API,
 }
