@@ -7,3 +7,6 @@ go run install.go
 
 Для пароля пользователя
 go get "golang.org/x/crypto/bcrypt"
+
+Для jwt
+go get -u github.com/golang-jwt/jwt/v5
