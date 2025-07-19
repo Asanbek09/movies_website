@@ -68,7 +68,7 @@ func main() {
 	http.HandleFunc("/api/genres/", movieHandler.GetGenres)
 
 	http.HandleFunc("/api/account/register/", accountHandler.Register)
-	http.HandleFunc("/api/account/authenticate/", accountHandler.Authenticate)
+	http.HandleFunc("/api/account/login/", accountHandler.Authenticate)
 
 	catchAllClientRoutesHandler := func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./public/index.html")
