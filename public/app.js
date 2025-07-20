@@ -83,5 +83,9 @@ window.app = {
             app.showError(errors.join(". "), false);
         }
     },
+    logout: () => {
+        proxiedStore.jwt = null;
+        app.Router.go("/");
+    },
     api: API,
 }

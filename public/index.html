@@ -117,6 +117,15 @@
             </form>
         </section>
     </template>
+    <template id="template-account">
+        <section id="account">
+            <h2>You logged in</h2>
+
+            <button onclick="app.logout()">Log out</button>
+            <button onclick="app.Router.go('/account/favorites')">Your Favorites</button>
+            <button onclick="aapp.Router.go('/account/watchlist')">Your watchlist</button>
+        </section>
+    </template>
     <footer>
         <p>(C) ReelingIT - FrontendMasters.com</p>
     </footer>
