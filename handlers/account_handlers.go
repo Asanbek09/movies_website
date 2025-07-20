@@ -176,7 +176,7 @@ func (h *AccountHandler) SaveToCollection(w http.ResponseWriter, r *http.Request
 		MovieID    int    `json:"movie_id"`
 		Collection string `json:"collection"`
 	}
-
+	
 	var req CollectionRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		h.logger.Error("Failed to decode collection request", err)
@@ -189,13 +189,12 @@ func (h *AccountHandler) SaveToCollection(w http.ResponseWriter, r *http.Request
 		http.Error(w, "Unable to retrieve email", http.StatusInternalServerError)
 		return
 	}
-
+	
 	success, err := h.storage.SaveCollection(models.User{Email: email},
 		req.MovieID, req.Collection)
 	if h.handleStorageError(w, err, "Failed to save to collection") {
 		return
 	}
-
 	response := AuthResponse{
 		Success: success,
 		Message: "Movie added to " + req.Collection + " successfully",
