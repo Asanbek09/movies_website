@@ -28,6 +28,7 @@ export const routes = [
     },
     {
         path: "/account/",
-        component: AccountPage
+        component: AccountPage,
+        loggedIn: true
     }
 ]
